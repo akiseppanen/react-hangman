@@ -1,0 +1,237 @@
+$hangman-weight: 3px;
+$hangman-color: #666;
+$letter-color: #666;
+
+body {
+  font-family: "Montserrat", sans-serif;
+  margin: 2vh;
+
+  &.ready {
+    background: #000;
+    color: #fff;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+.hidden {
+  visibility: hidden;
+}
+
+.overlay,
+.gameover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.overlay {
+  pointer-events: none;
+}
+
+.gameover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.8);
+  font-size: 10rem;
+  color: white;
+}
+
+.letter-slots {
+  text-align: center;
+  margin-bottom: 20vh;
+  height: 10vh;
+
+  .letter-slot {
+    display: inline-block;
+    color: $letter-color;
+    width: 60px;
+    height: 60px;
+    margin: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 4rem;
+    vertical-align: bottom;
+
+    &:empty {
+      border-bottom: 2px solid $letter-color;
+    }
+
+    &.space {
+      border-bottom: none;
+    }
+  }
+}
+
+.keyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  button {
+    width: 10vh;
+    line-height: 10vh;
+    background: #abc;
+    border: none;
+    border-radius: 4px;
+    color: #345;
+    margin: 0.2rem;
+    font-size: 6vh;
+    text-transform: uppercase;
+    font-weight: 300;
+
+    &.guessed {
+      visibility: hidden;
+    }
+  }
+}
+
+.hangman {
+  width: 40vh;
+  height: 40vh;
+  position: relative;
+  margin: 0 auto 40px auto;
+
+  @for $i from 1 through 11 {
+    .c#{$i} {
+      display: none;
+    }
+
+    &.strike-#{$i} {
+      @for $a from 1 through $i {
+        .c#{$a} {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.c1 {
+  position: absolute;
+  width: 50%;
+  height: 20%;
+  top: 80%;
+  overflow: hidden;
+  &::before {
+    content: "";
+    display: block;
+    border: $hangman-weight solid $hangman-color;
+    width: 100%;
+    height: 260%;
+    border-radius: 100%;
+    box-sizing: border-box;
+  }
+}
+
+.c2 {
+  width: $hangman-weight;
+  height: 80%;
+  background: $hangman-color;
+  position: absolute;
+  left: calc(25% - #{$hangman-weight});
+  top: 0;
+}
+
+.c3 {
+  width: 65%;
+  height: $hangman-weight;
+  background: $hangman-color;
+  position: absolute;
+  left: calc(25% - #{$hangman-weight});
+  top: 0;
+}
+
+.c4 {
+  width: 15%;
+  height: $hangman-weight;
+  background: $hangman-color;
+  position: absolute;
+  top: calc(10.5%);
+  left: calc(25% - #{$hangman-weight} / 2);
+  transform: rotate(-45deg);
+  transform-origin: 0 50%;
+}
+
+.c5 {
+  width: $hangman-weight;
+  height: 20%;
+  background: $hangman-color;
+  position: absolute;
+  top: 0;
+  left: calc(90% - #{$hangman-weight});
+}
+
+.c6 {
+  border: $hangman-weight solid $hangman-color;
+  border-radius: 100%;
+  width: 15%;
+  height: 15%;
+  position: absolute;
+  top: 20%;
+  left: calc(82.5% - #{$hangman-weight} / 2);
+}
+
+.c7 {
+  width: $hangman-weight;
+  height: 20%;
+  background: $hangman-color;
+  position: absolute;
+  top: 35%;
+  left: calc(90% - #{$hangman-weight});
+}
+
+.c8 {
+  width: $hangman-weight;
+  height: 15%;
+  background: $hangman-color;
+  position: absolute;
+  top: 35%;
+  left: calc(90% - #{$hangman-weight});
+  transform: rotate(45deg);
+  transform-origin: top right;
+}
+
+.c9 {
+  width: $hangman-weight;
+  height: 15%;
+  background: $hangman-color;
+  position: absolute;
+  top: 35%;
+  left: calc(90% - #{$hangman-weight});
+  transform: rotate(-45deg);
+  transform-origin: top left;
+}
+
+.c10 {
+  width: $hangman-weight;
+  height: 15%;
+  background: $hangman-color;
+  position: absolute;
+  top: 55%;
+  left: calc(90% - #{$hangman-weight});
+  transform: rotate(45deg);
+  transform-origin: top right;
+}
+
+.c11 {
+  width: $hangman-weight;
+  height: 15%;
+  background: $hangman-color;
+  position: absolute;
+  top: 55%;
+  left: calc(90% - #{$hangman-weight});
+  transform: rotate(-45deg);
+  transform-origin: top left;
+}
+.fireworks {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
